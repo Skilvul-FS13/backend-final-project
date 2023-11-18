@@ -1,13 +1,19 @@
-const { User } = require('../models');
+const { User, Post } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const getAllUser = async (req, res) => {
-  const allUsers = await User.findAll();
-  res.status(200).json({
-    message: 'succeed',
-    data: allUsers,
-  });
+  try {
+    const allUsers = await User.findAll({ include: Post });
+    res.status(200).json({
+      message: 'succeed',
+      data: allUsers,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
 };
 
 const getUserById = async (req, res) => {
@@ -61,32 +67,41 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const data = req.body;
-  const userCheck = await User.findAll({ where: { email: data.email } });
-  console.log('🚀 ~ file: userController.js:23 ~ register ~ userCheck:', userCheck);
+  try {
+    const data = req.body;
+    console.log('🚀 ~ file: userController.js:66 ~ register ~ data:', data);
+    const userCheck = await User.findAll({ where: { email: data.email } });
+    console.log('🚀 ~ file: userController.js:23 ~ register ~ userCheck:', userCheck);
 
-  if (userCheck.length > 0) {
-    res.status(406).json({
-      message: 'email has already been registered',
+    if (userCheck.length > 0) {
+      res.status(406).json({
+        message: 'email has already been registered',
+      });
+      return;
+    }
+
+    let saltRounds = 10;
+
+    bcrypt.hash(data.password, saltRounds, async (err, hash) => {
+      const newUser = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        password: hash,
+        gender: data.gender,
+      };
+      const addUser = await User.create(newUser);
+
+      res.status(201).json({
+        message: 'account succesfully registered',
+        data: addUser,
+      });
     });
-    return;
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    });
   }
-
-  let saltRounds = 10;
-
-  bcrypt.hash(data.password, saltRounds, async (err, hash) => {
-    const newUser = {
-      name: req.body.name,
-      email: req.body.email,
-      password: hash,
-    };
-    const addUser = await User.create(newUser);
-
-    res.status(201).json({
-      message: 'account succesfully registered',
-      data: addUser,
-    });
-  });
 };
 
 module.exports = { getAllUser, getUserById, register, login };
