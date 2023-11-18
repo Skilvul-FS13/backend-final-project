@@ -22,6 +22,20 @@ module.exports = {
           password: 'admin',
           gender: 'laki-laki',
         },
+        {
+          firstName: 'Alzi ',
+          lastName: 'Rahmana',
+          email: 'alzi@gmail.com',
+          password: 'admin',
+          gender: 'laki-laki',
+        },
+        {
+          firstName: 'Irfan ',
+          lastName: 'Hananto',
+          email: 'irfan@gmail.com',
+          password: 'admin',
+          gender: 'laki-laki',
+        },
       ],
       {}
     );
