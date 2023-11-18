@@ -1,5 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
+const Post = require('./post');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Post);
     }
   }
   User.init(
@@ -22,11 +24,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM,
         values: ['laki-laki', 'perempuan'],
       },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        defaultValue: new Date(),
+      },
     },
     {
       sequelize,
+      timestamps: true,
       modelName: 'User',
     }
   );
+
   return User;
 };
