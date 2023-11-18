@@ -1,2 +1,15 @@
 GET http://localhost:3000/users
 Content-Type: 'application/json'
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "firstName": "user",
+  "lastName": "user test",
+  "email": "irfanadmin@gmail.com",
+  "password": "admin",
+  "gender": "laki-laki"
+}
