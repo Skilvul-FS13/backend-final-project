@@ -1,0 +1,59 @@
+GET http://localhost:3000/users
+Content-Type: 'application/json'
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+# {
+#   "firstName": "user",
+#   "lastName": "test",
+#   "email": "admin@gmail.com",
+#   "password": "root",
+#   "gender": "laki-laki",
+#   "role": "user"
+# }
+
+{
+  "firstName": "admin",
+  "lastName": "test",
+  "email": "admin@gmail.com",
+  "password": "root",
+  "gender": "laki-laki",
+  "role": "admin"
+}
+
+###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "adminpass"
+}
+
+###
+PUT http://localhost:3000/users/10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "firstName": "admin edited",
+  "lastName": "test",
+  "email": "admin@gmail.com",
+  "password": "adminpass",
+  "image": "",
+  "gender": "laki-laki",
+  "role": "admin"
+}
+
+###
+GET  http://localhost:3000/users/1/post
+Content-Type: application/json
+
+###
+GET http://localhost:3000/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
