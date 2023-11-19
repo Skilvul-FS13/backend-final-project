@@ -1,6 +1,5 @@
 'use strict';
 const { Model } = require('sequelize');
-const Post = require('./post');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -11,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Post);
+      User.hasMany(models.Likes);
     }
   }
   User.init(
@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       gender: {
         type: DataTypes.ENUM,
         values: ['laki-laki', 'perempuan'],
+      },
+      role: {
+        type: DataTypes.ENUM,
+        values: ['admin', 'user'],
       },
       createdAt: {
         allowNull: false,
