@@ -63,7 +63,6 @@ const addPost = async (req, res) => {
   try {
     const data = req.body;
     const user = await User.findOne({ where: { id: data.userId } });
-    console.log('🚀 ~ file: postController.js:67 ~ addPost ~ user:', user);
 
     if (!user) {
       return res.status(404).json({
@@ -76,11 +75,11 @@ const addPost = async (req, res) => {
       image: data.image,
       userId: data.userId,
     };
-    const addPost = await Post.create(newPost);
+    const addNewPost = await Post.create(newPost);
 
     res.status(201).json({
       message: 'Post has been added succesfully',
-      data: addPost,
+      data: addNewPost,
     });
   } catch (error) {
     res.send(error.message);
