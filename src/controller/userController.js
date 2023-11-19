@@ -1,10 +1,21 @@
-const { User, Post } = require('../models');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { Comments, Likes, User, Post } = require('../models');
 
 const getAllUser = async (req, res) => {
   try {
-    const allUsers = await User.findAll({ include: Post });
+    const allUsers = await User.findAll({
+      include: [
+        {
+          model: Likes,
+          require: true,
+        },
+        {
+          model: Comments,
+          require: true,
+        },
+      ],
+    });
     res.status(200).json({
       message: 'succeed',
       data: allUsers,
@@ -29,6 +40,24 @@ const getUserById = async (req, res) => {
   res.status(200).json({
     message: 'succeed',
     data: getUser,
+  });
+};
+
+const getPostById = async (req, res) => {
+  const id = req.params.id;
+  const getPost = await Post.findOne({
+    where: { userId: id },
+  });
+
+  if (!getPost) {
+    res.status(404).json({
+      message: 'user not found',
+    });
+  }
+
+  res.status(200).json({
+    message: 'succeed',
+    data: getPost,
   });
 };
 
@@ -143,4 +172,4 @@ const editUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUser, getUserById, register, login, editUser };
+module.exports = { getAllUser, getUserById, getPostById, register, login, editUser };
