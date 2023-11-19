@@ -28,6 +28,10 @@ module.exports = {
         type: Sequelize.ENUM,
         values: ['laki-laki', 'perempuan'],
       },
+      role: {
+        type: Sequelize.ENUM,
+        values: ['admin', 'user'],
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
