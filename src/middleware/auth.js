@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken');
 
 const auth = (req, res, next) => {
-  const header = req.headers.authorization;
+  const auth = req.headers.authorization;
 
-  if (!header?.startsWith('Bearer')) {
+  if (!auth?.startsWith('Bearer')) {
     return res.status(403).json({
       message: 'You need to specify the auth',
     });
   }
 
-  const jwtToken = header.split(' ')?.[1];
+  const jwtToken = auth.split(' ')?.[1];
 
   jwt.verify(jwtToken, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
