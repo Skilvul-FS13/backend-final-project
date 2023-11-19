@@ -18,8 +18,16 @@ module.exports = {
         {
           post: 'halo ini post pertama saya dari akun pertama di website ini',
           image: null,
-          likes: 1,
+          likeId: 1,
           userId: 1,
+          commentId: 1,
+        },
+        {
+          post: 'halo ini post pertama saya dari akun kedua di website ini',
+          image: null,
+          likeId: 1,
+          userId: 2,
+          commentId: 1,
         },
       ],
       {}
@@ -33,6 +41,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Post', null, {});
+    await queryInterface.bulkDelete('Posts', null, {});
   },
 };
