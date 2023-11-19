@@ -28,7 +28,19 @@ const getAllPost = async (req, res) => {
 const getPostById = async (req, res) => {
   try {
     const id = req.params.id;
-    const getPost = await Post.findOne({ where: { id: id }, include: Comments });
+    const getPost = await Post.findOne({
+      where: { id: id },
+      include: [
+        {
+          model: Likes,
+          require: true,
+        },
+        {
+          model: Comments,
+          require: true,
+        },
+      ],
+    });
 
     if (!getPost) {
       res.status(404).json({
@@ -49,9 +61,9 @@ const getPostById = async (req, res) => {
 
 const addPost = async (req, res) => {
   try {
-    const id = req.params.id;
     const data = req.body;
-    const user = await User.findOne({ where: { id: id } });
+    const user = await User.findOne({ where: { id: data.userId } });
+    console.log('🚀 ~ file: postController.js:67 ~ addPost ~ user:', user);
 
     if (!user) {
       return res.status(404).json({
@@ -62,9 +74,7 @@ const addPost = async (req, res) => {
     const newPost = {
       post: data.post,
       image: data.image,
-      likeId: data.likeId,
       userId: data.userId,
-      commentId: data.commentId,
     };
     const addPost = await Post.create(newPost);
 
@@ -73,7 +83,7 @@ const addPost = async (req, res) => {
       data: addPost,
     });
   } catch (error) {
-    res.send('User not found');
+    res.send(error.message);
   }
 };
 
@@ -98,4 +108,30 @@ const deletePost = async (req, res) => {
   }
 };
 
-module.exports = { getAllPost, getPostById, deletePost };
+const editPost = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = req.body;
+    const post = await Post.findOne({ where: { id: id } });
+
+    const editedPost = {
+      post: data.post,
+      image: data.image,
+      likeId: data.likeId,
+      userId: data.userId,
+      commentId: data.commentId,
+    };
+    const edited = await post.update(editedPost, { where: { id: id } });
+
+    res.status(201).json({
+      message: 'Post has succesfully made a change',
+      data: edited,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: 'Internal Error',
+    });
+  }
+};
+
+module.exports = { getAllPost, getPostById, addPost, deletePost, editPost };
