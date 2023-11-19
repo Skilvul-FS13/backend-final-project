@@ -11,20 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Comments.belongsTo(models.User, { foreignKey: 'UserId' });
-      Comments.hasOne(models.Post);
+      Comments.belongsTo(models.User, { foreignKey: 'userId' });
+      Comments.belongsTo(models.Post, { foreignKey: 'postId' });
     }
   }
   Comments.init(
     {
-      PostId: {
+      postId: {
         type: DataTypes.INTEGER,
         references: {
           model: Post,
           key: 'id',
         },
       },
-      UserId: {
+      userId: {
         type: DataTypes.INTEGER,
         references: {
           model: User,
