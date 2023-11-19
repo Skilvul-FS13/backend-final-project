@@ -18,12 +18,12 @@ module.exports = {
         {
           post: 'halo ini post pertama saya dari akun pertama di website ini',
           image: null,
-          UserId: 1,
+          userId: 1,
         },
         {
           post: 'halo ini post pertama saya dari akun kedua di website ini',
           image: null,
-          UserId: 2,
+          userId: 2,
         },
       ],
       {}
