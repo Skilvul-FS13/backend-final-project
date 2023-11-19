@@ -12,33 +12,19 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.belongsTo(models.User);
-      Post.hasMany(models.Likes);
-      Post.hasMany(models.Comments);
+      Post.belongsTo(models.User, { foreignKey: 'UserId' }); // Assuming 'UserId' is the correct foreign key name
+      Post.hasMany(models.Likes, { foreignKey: 'PostId' }); // Assuming 'PostId' is the correct foreign key name
+      Post.hasMany(models.Comments, { foreignKey: 'PostId' }); // Assuming 'PostId' is the correct foreign key name
     }
   }
   Post.init(
     {
       post: DataTypes.STRING,
       image: DataTypes.STRING,
-      likeId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: Likes,
-          key: 'id',
-        },
-      },
-      userId: {
+      UserId: {
         type: DataTypes.INTEGER,
         references: {
           model: User,
-          key: 'id',
-        },
-      },
-      commentId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: Comments,
           key: 'id',
         },
       },
