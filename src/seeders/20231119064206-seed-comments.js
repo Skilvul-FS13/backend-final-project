@@ -14,13 +14,13 @@ module.exports = {
      */
     await queryInterface.bulkInsert('Comments', [
       {
-        postId: 1,
-        userId: 2,
+        PostId: 1,
+        UserId: 2,
         comment: 'Ini ada komentar dari postId 1 dan userId 2',
       },
       {
-        postId: 2,
-        userId: 1,
+        PostId: 2,
+        UserId: 1,
         comment: 'Ini ada komentar dari postId 2 dan userId 1',
       },
     ]);
