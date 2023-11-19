@@ -18,7 +18,7 @@ const getAllUser = async (req, res) => {
 
 const getUserById = async (req, res) => {
   const id = req.params.id;
-  const getUser = await User.findOne({ where: { id: id } });
+  const getUser = await User.findOne({ where: { id: id }, include: Post });
 
   if (!getUser) {
     res.status(404).json({
@@ -53,7 +53,7 @@ const login = async (req, res) => {
         });
       } else {
         res.status(404).json({
-          status: failed,
+          status: false,
           message: 'Wrong Password',
         });
       }
@@ -104,4 +104,43 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { getAllUser, getUserById, register, login };
+const editUser = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = req.body;
+    const user = await User.findOne({ where: { id: id } });
+
+    let saltRounds = 10;
+    const hashPassword = await new Promise((resolve, reject) => {
+      bcrypt.hash(data.password, saltRounds, (err, hash) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(hash);
+        }
+      });
+    });
+
+    const editedUser = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: hashPassword,
+      image: data.image,
+      gender: data.gender,
+      role: data.role,
+    };
+    const edited = await user.update(editedUser, { where: { id: id } });
+
+    res.status(201).json({
+      message: 'User has succesfully made a change',
+      edited,
+    });
+  } catch (error) {
+    res.status(404).json({
+      message: 'Internal Error',
+    });
+  }
+};
+
+module.exports = { getAllUser, getUserById, register, login, editUser };
