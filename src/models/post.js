@@ -12,16 +12,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.belongsTo(models.User, { foreignKey: 'UserId' }); // Assuming 'UserId' is the correct foreign key name
-      Post.hasMany(models.Likes, { foreignKey: 'PostId' }); // Assuming 'PostId' is the correct foreign key name
-      Post.hasMany(models.Comments, { foreignKey: 'PostId' }); // Assuming 'PostId' is the correct foreign key name
+      Post.belongsTo(models.User, { foreignKey: 'userId' }); // Assuming 'UserId' is the correct foreign key name
+      Post.hasMany(models.Likes, { foreignKey: 'postId' }); // Assuming 'PostId' is the correct foreign key name
+      Post.hasMany(models.Comments, { foreignKey: 'postId' }); // Assuming 'PostId' is the correct foreign key name
     }
   }
   Post.init(
     {
       post: DataTypes.STRING,
       image: DataTypes.STRING,
-      UserId: {
+      userId: {
         type: DataTypes.INTEGER,
         references: {
           model: User,
