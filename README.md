@@ -90,7 +90,7 @@ npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data
 
 To authenticate an API request, you should provide your token key in the `Authorization` header.
 
-```http
+```bash
 POST {baseUrl}/users/login
 ```
 
