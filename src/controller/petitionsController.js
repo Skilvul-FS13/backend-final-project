@@ -79,6 +79,27 @@ const addPetition = async (req, res) => {
   }
 };
 
+const deletePetition = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const findPetition = await Petitions.findOne({ where: { id: id } });
+    const deletePetitionById = await findPetition.destroy({ where: { id: id } });
+
+    if (!deletePetitionById) {
+      return res.status(404).json({
+        message: 'Petition with ' + id + ' not found',
+      });
+    }
+
+    res.status(200).json({
+      message: 'Petition has been succesfully deleted',
+      data: deletePetitionById,
+    });
+  } catch (error) {
+    res.send('ID not found');
+  }
+};
+
 const editPetition = async (req, res) => {
   try {
     const id = req.params.id;
@@ -104,4 +125,4 @@ const editPetition = async (req, res) => {
   }
 };
 
-module.exports = { getAllPetition, getPetitionById, addPetition, editPetition };
+module.exports = { getAllPetition, getPetitionById, addPetition, editPetition, deletePetition };
