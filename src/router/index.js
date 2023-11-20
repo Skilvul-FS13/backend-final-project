@@ -7,6 +7,7 @@ const likesRoute = require('./likesRoute.js');
 const newsRoute = require('./newsRoute.js');
 const categoriesRoute = require('./categoriesRoute.js');
 const petitionsRoute = require('./petitionsRoute.js');
+const signaturesRoute = require('./signaturesRoute.js');
 
 route.get('/', (req, res) => {
   res.json({
@@ -21,5 +22,6 @@ route.use('/comments', commentsRoute);
 route.use('/news', newsRoute);
 route.use('/categories', categoriesRoute);
 route.use('/petitions', petitionsRoute);
+route.use('/signatures', signaturesRoute);
 
 module.exports = route;
