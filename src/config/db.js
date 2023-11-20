@@ -7,6 +7,7 @@ const sequelize = new Sequelize({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
   dialect: 'mysql',
+  dialectModule: require('mysql2'),
   dialectOptions: {
     connectTimeout: 30000, // 30 seconds (adjust as needed)
   },
