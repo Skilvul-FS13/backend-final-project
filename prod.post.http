@@ -1,0 +1,35 @@
+###
+GET https://backend-final-project-eight.vercel.app/posts
+Content-Type: application/json
+
+###
+GET https://backend-final-project-eight.vercel.app/posts/2
+Content-Type: application/json
+
+###
+POST https://backend-final-project-eight.vercel.app/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "post": "halo ini post pertama saya dari akun pertama di website ini",
+  "image": "",
+  "userId": 1
+}
+
+###
+PUT https://backend-final-project-eight.vercel.app/posts/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "post": "halo ini post yang sudah diedit",
+  "image": "",
+  "userId": 1
+}
+
+###
+
+DELETE https://backend-final-project-eight.vercel.app/posts/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw

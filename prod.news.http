@@ -1,0 +1,42 @@
+###
+GET https://backend-final-project-eight.vercel.app/news
+Content-Type: application/json
+
+###
+
+GET https://backend-final-project-eight.vercel.app/news/2
+Content-Type: application/json
+
+###
+
+POST https://backend-final-project-eight.vercel.app/news
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "title": "Ini adalah berita dari API",
+  "description": "ini deskripsi dari berita API",
+  "image": "",
+  "userId": 2,
+  "categoryId": 3
+}
+
+###
+
+DELETE https://backend-final-project-eight.vercel.app/news/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+###
+
+PUT https://backend-final-project-eight.vercel.app/news/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "title": "Ini adalah berita dari API tapi sudah diedit",
+  "description": "ini deskripsi dari berita API tapi sudah diedit",
+  "image": "",
+  "userId": 2,
+  "categoryId": 1
+}

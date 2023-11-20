@@ -1,0 +1,59 @@
+GET https://backend-final-project-eight.vercel.app/users
+Content-Type: 'application/json'
+
+###
+
+POST https://backend-final-project-eight.vercel.app/users
+Content-Type: application/json
+
+# {
+#   "firstName": "user",
+#   "lastName": "test",
+#   "email": "admin@gmail.com",
+#   "password": "root",
+#   "gender": "laki-laki",
+#   "role": "user"
+# }
+
+{
+  "firstName": "admin",
+  "lastName": "test",
+  "email": "admin@gmail.com",
+  "password": "root",
+  "gender": "laki-laki",
+  "role": "admin"
+}
+
+###
+POST https://backend-final-project-eight.vercel.app/users/login
+Content-Type: application/json
+
+{
+  "email": "admin@gmail.com",
+  "password": "adminpass"
+}
+
+###
+PUT https://backend-final-project-eight.vercel.app/users/10
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "firstName": "admin edited",
+  "lastName": "test",
+  "email": "admin@gmail.com",
+  "password": "adminpass",
+  "image": "",
+  "gender": "laki-laki",
+  "role": "admin"
+}
+
+###
+GET  https://backend-final-project-eight.vercel.app/users/1/post
+Content-Type: application/json
+
+###
+GET https://backend-final-project-eight.vercel.app/users/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+

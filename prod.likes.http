@@ -1,0 +1,18 @@
+GET https://backend-final-project-eight.vercel.app/likes
+Content-Type: application/json
+
+###
+POST https://backend-final-project-eight.vercel.app/likes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "postId": 3,
+  "userId": 1
+}
+
+###
+
+DELETE  https://backend-final-project-eight.vercel.app/likes/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
