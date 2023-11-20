@@ -109,23 +109,23 @@ const deleteNews = async (req, res) => {
   }
 };
 
-const editPost = async (req, res) => {
+const editNews = async (req, res) => {
   try {
     const id = req.params.id;
     const data = req.body;
-    const post = await Post.findOne({ where: { id: id } });
+    const news = await News.findOne({ where: { id: id } });
 
-    const editedPost = {
-      post: data.post,
+    const editedNews = {
+      title: data.title,
+      description: data.description,
       image: data.image,
-      likeId: data.likeId,
       userId: data.userId,
-      commentId: data.commentId,
+      categoryId: data.categoryId,
     };
-    const edited = await post.update(editedPost, { where: { id: id } });
+    const edited = await news.update(editedNews, { where: { id: id } });
 
     res.status(201).json({
-      message: 'Post has succesfully made a change',
+      message: 'News has succesfully made a change',
       data: edited,
     });
   } catch (error) {
@@ -135,4 +135,4 @@ const editPost = async (req, res) => {
   }
 };
 
-module.exports = { getAllNews, getNewsById, addNews, deleteNews };
+module.exports = { getAllNews, getNewsById, addNews, deleteNews, editNews };
