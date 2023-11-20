@@ -1,4 +1,4 @@
-const { User, Post, Comments } = require('../models');
+const { Post, Comments } = require('../models');
 
 const getAllComments = async (req, res) => {
   try {
@@ -63,44 +63,42 @@ const addComment = async (req, res) => {
   }
 };
 
-const deletePost = async (req, res) => {
+const deleteComment = async (req, res) => {
   try {
     const id = req.params.id;
-    const findTodo = await Todos.findOne({ where: { id: id } });
-    const deletePostById = await findTodo.destroy({ where: { id: id } });
+    const findComment = await Comments.findOne({ where: { id: id } });
+    const deleteCommentById = await findComment.destroy({ where: { id: id } });
 
-    if (!deletePostById) {
+    if (!findComment) {
       return res.status(404).json({
-        message: 'Post with ' + id + ' not found',
+        message: 'Comment with ' + id + ' not found',
       });
     }
 
     res.status(200).json({
-      message: 'Post has been succesfully deleted',
-      data: deletePostById,
+      message: 'Comment has been succesfully deleted',
+      data: deleteCommentById,
     });
   } catch (error) {
     res.send('ID not found');
   }
 };
 
-const editPost = async (req, res) => {
+const editComment = async (req, res) => {
   try {
     const id = req.params.id;
     const data = req.body;
-    const post = await Post.findOne({ where: { id: id } });
+    const comment = await Comments.findOne({ where: { id: id } });
 
-    const editedPost = {
-      post: data.post,
-      image: data.image,
-      likeId: data.likeId,
+    const editedComment = {
+      postId: data.postId,
       userId: data.userId,
-      commentId: data.commentId,
+      comment: data.comment,
     };
-    const edited = await post.update(editedPost, { where: { id: id } });
+    const edited = await comment.update(editedComment, { where: { id: id } });
 
     res.status(201).json({
-      message: 'Post has succesfully made a change',
+      message: 'Comment has succesfully made a change',
       data: edited,
     });
   } catch (error) {
@@ -110,4 +108,4 @@ const editPost = async (req, res) => {
   }
 };
 
-module.exports = { getAllComments, getCommentById, addComment, deletePost, editPost };
+module.exports = { getAllComments, getCommentById, addComment, deleteComment, editComment };
