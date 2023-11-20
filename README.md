@@ -3,7 +3,7 @@
 
 #### Endpoint
 
-```http
+```bash
 # BaseURL
 GET /api/items
 ```
