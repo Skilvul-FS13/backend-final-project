@@ -5,6 +5,7 @@ const postsRoute = require('./postsRoute.js');
 const commentsRoute = require('./commentsRoute.js');
 const likesRoute = require('./likesRoute.js');
 const newsRoute = require('./newsRoute.js');
+const categoriesRoute = require('./categoriesRoute.js');
 
 route.get('/', (req, res) => {
   res.json({
@@ -17,5 +18,6 @@ route.use('/posts', postsRoute);
 route.use('/likes', likesRoute);
 route.use('/comments', commentsRoute);
 route.use('/news', newsRoute);
+route.use('/categories', categoriesRoute);
 
 module.exports = route;
