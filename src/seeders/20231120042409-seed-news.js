@@ -12,7 +12,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert('Comments', [
+    await queryInterface.bulkInsert('News', [
       {
         title: 'Ini adalah berita pertama',
         description: 'ini deskripsi dari berita pertama',
@@ -31,11 +31,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    await queryInterface.bulkDelete('News', null, {});
   },
 };
