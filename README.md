@@ -103,14 +103,6 @@ npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data
 
 ## API Reference
 
-#### Authorization
-
-To authenticate an API request, you should provide your token key in the `Authorization` header.
-
-```bash
-POST {baseUrl}/users/login
-```
-
 #### Endpoint
 
 ```bash
@@ -120,6 +112,13 @@ backend-final-project-fs13.vercel.app
 or if running locally
 
 http://localhost:3000
+```
+#### Authorization
+
+To authenticate an API request, you should provide your token key in the `Authorization` header.
+
+```bash
+POST {baseUrl}/users/login
 ```
 
 #### Get users
