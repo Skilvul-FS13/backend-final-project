@@ -1,3 +1,20 @@
+# Green World Aware API
+
+Green World Aware API is an API built with Express js and Sequelize. This documentation serves as a comprehensive guide to help developers seamlessly integrate and leverage the capabilities of our API in their applications.
+
+We recommend to test API using Postman.
+[![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/)
+
+## Features
+
+- User
+- Post
+- Likes
+- Comments
+- Categories
+- News
+- Petitions
+- Signatures
 
 ## API Installation
 
@@ -33,7 +50,7 @@ You can also undo migration.
 npx sequelize-cli db:migrate:undo
 ```
 
-You can revert back to the initial state by undoing all migrations with the db:migrate:undo:all command. You can also revert back to a specific migration by passing its name with the --to option. 
+You can revert back to the initial state by undoing all migrations with the db:migrate:undo:all command. You can also revert back to a specific migration by passing its name with the --to option.
 
 For example:
 
@@ -42,3 +59,111 @@ For example:
 
 npx sequelize-cli db:migrate:undo:all --to 20231118065259-create-user.js
 ```
+
+For seeding, you can use these commands:
+
+```bash
+# seed all
+
+npx sequelize-cli db:seed:all
+```
+
+You can also undo seed
+
+```bash
+# undo all seed
+
+npx sequelize-cli db:seed:undo:all
+
+# undo recent seed
+
+npx sequelize-cli db:seed:undo
+
+# undo specific seed
+
+npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data
+```
+
+## API Reference
+
+#### Authorization
+
+To authenticate an API request, you should provide your token key in the `Authorization` header.
+
+```http
+POST {baseUrl}/users/login
+```
+
+#### Endpoint
+
+```bash
+# BaseURL
+backend-final-project-fs13.vercel.app
+
+or if running locally
+
+http://localhost:3000
+```
+
+#### Get all users
+
+```bash
+# Method and Endpoint
+
+GET /users
+```
+
+| Method | Endpoint          | Description                              |
+| :----- | :---------------- | :--------------------------------------- |
+| `GET`  | `/users`          | Get all users                            |
+| `GET`  | `/users/:id`      | Get user by id                           |
+| `GET`  | `/users/:id/post` | Get post by user id                      |
+| `POST` | `/users/login`    | Get user token                           |
+| `POST` | `/users`          | `require authentication` Create new user |
+| `PUT`  | `/users/:id`      | `require authentication` Edit user       |
+
+#### Get post
+
+```bash
+# Method and Endpoint
+
+GET /post
+```
+
+| Method   | Endpoint     | Description                              |
+| :------- | :----------- | :--------------------------------------- |
+| `GET`    | `/posts`     | Get all posts                            |
+| `GET`    | `/posts/:id` | Get post by id                           |
+| `POST`   | `/posts`     | `require authentication` Create new post |
+| `PUT`    | `/posts/:id` | `require authentication` Edit post       |
+| `DELETE` | `/posts/:id` | `require authentication` Delete post     |
+
+#### Get comment
+
+```bash
+# Method and Endpoint
+
+GET /comments
+```
+
+| Method   | Endpoint        | Description                                 |
+| :------- | :-------------- | :------------------------------------------ |
+| `GET`    | `/comments`     | Get all comments                            |
+| `GET`    | `/comments/:id` | Get comment by id                           |
+| `POST`   | `/comments`     | `require authentication` Create new comment |
+| `PUT`    | `/comments/:id` | `require authentication` Edit comment       |
+| `DELETE` | `/comments/:id` | `require authentication` Delete comment     |
+
+#### Get like
+
+```bash
+# Method and Endpoint
+
+GET /likes
+```
+
+| Method   | Endpoint     | Description                                 |
+| :------- | :----------- | :------------------------------------------ |
+| `GET`    | `/likes`     | Get all likes                               |
+| `POST`   | `/likes`     | `require authentication` Create new comment |
+| `DELETE` | `/likes/:id` | `require authentication` Delete comment     |
