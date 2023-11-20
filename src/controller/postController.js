@@ -44,7 +44,7 @@ const getPostById = async (req, res) => {
 
     if (!getPost) {
       res.status(404).json({
-        message: 'user not found',
+        message: 'Post not found',
       });
     }
 
@@ -89,8 +89,8 @@ const addPost = async (req, res) => {
 const deletePost = async (req, res) => {
   try {
     const id = req.params.id;
-    const findTodo = await Todos.findOne({ where: { id: id } });
-    const deletePostById = await findTodo.destroy({ where: { id: id } });
+    const findPost = await Post.findOne({ where: { id: id } });
+    const deletePostById = await findPost.destroy({ where: { id: id } });
 
     if (!deletePostById) {
       return res.status(404).json({
