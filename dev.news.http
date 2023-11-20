@@ -1,0 +1,28 @@
+###
+GET http://localhost:3000/news
+Content-Type: application/json
+
+###
+
+GET http://localhost:3000/news/2
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/news
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "title": "Ini adalah berita dari API",
+  "description": "ini deskripsi dari berita API",
+  "image": "",
+  "userId": 2,
+  "categoryId": 1
+}
+
+###
+
+DELETE http://localhost:3000/news/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
