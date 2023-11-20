@@ -1,4 +1,4 @@
-const { Signatures, Petitions } = require('../models');
+const { Signatures, Petitions, User } = require('../models');
 
 const getAllSignature = async (req, res) => {
   try {
@@ -40,24 +40,31 @@ const addSignature = async (req, res) => {
   }
 };
 
-const deleteLike = async (req, res) => {
+const getSignatureById = async (req, res) => {
   try {
     const id = req.params.id;
-    const findLike = await Likes.findOne({ where: { id: id } });
-    const deleteLikeById = await findLike.destroy({ where: { id: id } });
+    const getSignature = await Signatures.findOne({
+      where: { id: id },
+      include: [
+        { model: Petitions, required: true },
+        { model: User, required: true },
+      ],
+    });
 
-    if (!findLike) {
-      return res.status(404).json({
-        message: 'Like with ' + id + ' not found',
+    if (!getSignature) {
+      res.status(404).json({
+        message: 'Signature not found',
       });
     }
 
     res.status(200).json({
-      message: 'Like has been succesfully deleted',
-      data: deleteLikeById,
+      message: 'succeed',
+      data: getSignature,
     });
   } catch (error) {
-    res.send('ID not found');
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
@@ -82,4 +89,4 @@ const deleteSignature = async (req, res) => {
   }
 };
 
-module.exports = { getAllSignature, addSignature, deleteSignature };
+module.exports = { getAllSignature, addSignature, getSignatureById, deleteSignature };
