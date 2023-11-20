@@ -1,13 +1,13 @@
 const express = require('express');
 
 const auth = require('../middleware/auth');
-const { getAllCategories, getCategoryById } = require('../controller/categoryController');
+const { getAllCategories, getCategoryById, addCategory, deleteCategory, editCategory } = require('../controller/categoryController');
 const route = express.Router();
 
 route.get('/', getAllCategories);
 route.get('/:id', getCategoryById);
-// route.post('/', auth, addComment);
-// route.put('/:id', auth, editComment);
-// route.delete('/:id', auth, deleteComment);
+route.post('/', auth, addCategory);
+route.put('/:id', auth, editCategory);
+route.delete('/:id', auth, deleteCategory);
 
 module.exports = route;
