@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 const { Petitions } = require('./petitions');
 const { User } = require('./user');
 module.exports = (sequelize, DataTypes) => {
-  class Signature extends Model {
+  class Signatures extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Signature.belongsTo(models.Petitions, { foreignKey: 'petitionId' });
-      Signature.belongsTo(models.User, { foreignKey: 'userId' });
+      Signatures.belongsTo(models.Petitions, { foreignKey: 'petitionId' });
+      Signatures.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }
-  Signature.init(
+  Signatures.init(
     {
       petitionId: {
         type: DataTypes.INTEGER,
@@ -34,8 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Signature',
+      modelName: 'Signatures',
     }
   );
-  return Signature;
+  return Signatures;
 };
