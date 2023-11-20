@@ -50,7 +50,7 @@ const addCategory = async (req, res) => {
       data: addNewCategory,
     });
   } catch (error) {
-    res.send(error.message);
+    res.status(500).send(error.message);
   }
 };
 
@@ -71,7 +71,7 @@ const deleteCategory = async (req, res) => {
       data: deleteCategoryById,
     });
   } catch (error) {
-    res.send('ID not found');
+    res.status(500).send('ID not found');
   }
 };
 
@@ -91,7 +91,7 @@ const editCategory = async (req, res) => {
       data: edited,
     });
   } catch (error) {
-    res.status(404).json({
+    res.status(500).json({
       message: 'Internal Error',
     });
   }
