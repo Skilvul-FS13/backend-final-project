@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Post.belongsTo(models.User, { foreignKey: 'userId' }); // Assuming 'UserId' is the correct foreign key name
-      Post.hasMany(models.Likes, { foreignKey: 'postId' }); // Assuming 'PostId' is the correct foreign key name
-      Post.hasMany(models.Comments, { foreignKey: 'postId' }); // Assuming 'PostId' is the correct foreign key name
+      Post.belongsTo(models.User, { foreignKey: 'userId' });
+      Post.hasMany(models.Likes, { foreignKey: 'postId' });
+      Post.hasMany(models.Comments, { foreignKey: 'postId' });
     }
   }
   Post.init(
