@@ -17,10 +17,11 @@ module.exports = {
     dialect: 'mysql',
   },
   production: {
-    username: 'root',
-    password: null,
-    database: 'database_production',
-    host: '127.0.0.1',
+    username: 'avnadmin',
+    password: 'AVNS_RQOtb8KTSiixzGk93RK',
+    database: 'defaultdb',
+    host: 'mysql-16949196-beckersteve99-77d0.a.aivencloud.com',
+    port: 25222,
     dialect: 'mysql',
   },
 };
