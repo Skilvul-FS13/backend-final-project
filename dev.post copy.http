@@ -1,0 +1,35 @@
+###
+GET http://localhost:3000/posts
+Content-Type: application/json
+
+###
+GET http://localhost:3000/posts/2
+Content-Type: application/json
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "post": "halo ini post pertama saya dari akun pertama di website ini",
+  "image": "",
+  "userId": 1
+}
+
+###
+PUT http://localhost:3000/posts/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "post": "halo ini post yang sudah diedit",
+  "image": "",
+  "userId": 1
+}
+
+###
+
+DELETE http://localhost:3000/posts/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw

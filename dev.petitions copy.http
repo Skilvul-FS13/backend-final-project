@@ -1,0 +1,39 @@
+GET http://localhost:3000/petitions
+Content-Type: application/json
+
+###
+
+GET http://localhost:3000/petitions/1
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/petitions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "userId": 1,
+  "title": "Petisi pertama dari API",
+  "description": "Ini deskripsi petisi pertama dari API",
+  "image": ""
+}
+
+###
+
+DELETE http://localhost:3000/petitions/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+###
+
+PUT http://localhost:3000/petitions/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjU2Njc4NTcwNX0.GOAhma8VrYcfFAECGqJG-Rv_wNSUOhdu-s6Mpj8RWSw
+
+{
+  "userId": 1,
+  "title": "Petisi pertama dari API edited",
+  "description": "Ini deskripsi petisi pertama dari API edited",
+  "image": ""
+}
