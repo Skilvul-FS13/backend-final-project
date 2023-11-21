@@ -74,7 +74,7 @@ const login = async (req, res) => {
     .compare(data.password, getUser.password)
     .then((result) => {
       if (result) {
-        const token = jwt.sign({ id: data.id, iat: Math.floor(Date.now() / 3000 - 30) }, process.env.JWT_SECRET);
+        const token = jwt.sign({ id: data.id, firstName: data.firstName, lastName: data.lastName, role: data.role, iat: Math.floor(Date.now() / 3000 - 30) }, process.env.JWT_SECRET);
         res.status(200).json({
           status: true,
           message: 'Login Succesful',
@@ -118,6 +118,7 @@ const register = async (req, res) => {
         email: data.email,
         password: hash,
         gender: data.gender,
+        role: data.role,
       };
       const addUser = await User.create(newUser);
 
