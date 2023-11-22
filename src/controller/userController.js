@@ -62,48 +62,48 @@ const getPostById = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const data = req.body;
-  console.log('🚀 ~ file: userController.js:66 ~ login ~ data:', data);
-  const getUser = await User.findOne({ where: { email: data.email } });
-  console.log('🚀 ~ file: userController.js:67 ~ login ~ getUser:', getUser.password);
+  try {
+    const data = req.body;
+    const getUser = await User.findOne({ where: { email: data.email } });
 
-  if (!getUser) {
-    res.status(404).json({
-      message: 'user not found',
-    });
-  }
-
-  bcrypt
-    .compare(data.password, getUser.password)
-    .then((result) => {
-      if (result) {
-        const token = jwt.sign({ id: getUser.id, firstName: getUser.firstName, lastName: getUser.lastName, role: getUser.role, iat: Math.floor(Date.now() / 3000 - 30) }, process.env.JWT_SECRET);
-        res.status(200).json({
-          status: true,
-          message: 'Login Succesful',
-          data: token,
-        });
-      } else {
-        res.status(404).json({
-          status: false,
-          message: 'Wrong Password',
-        });
-      }
-    })
-    .catch((error) => {
-      res.status(500).json({
-        status: false,
-        message: 'Internal server error',
+    if (!getUser) {
+      return res.status(404).json({
+        message: 'user not found',
       });
-    });
+    }
+
+    bcrypt
+      .compare(data.password, getUser.password)
+      .then((result) => {
+        if (result) {
+          const token = jwt.sign({ id: getUser.id, firstName: getUser.firstName, lastName: getUser.lastName, role: getUser.role, iat: Math.floor(Date.now() / 3000 - 30) }, process.env.JWT_SECRET);
+          res.status(200).json({
+            status: true,
+            message: 'Login Succesful',
+            data: token,
+          });
+        } else {
+          res.status(404).json({
+            status: false,
+            message: 'Wrong Password',
+          });
+        }
+      })
+      .catch((error) => {
+        res.status(500).json({
+          status: false,
+          message: 'Internal server error',
+        });
+      });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
 };
 
 const register = async (req, res) => {
   try {
     const data = req.body;
-    console.log('🚀 ~ file: userController.js:66 ~ register ~ data:', data);
     const userCheck = await User.findAll({ where: { email: data.email } });
-    console.log('🚀 ~ file: userController.js:23 ~ register ~ userCheck:', userCheck);
 
     if (userCheck.length > 0) {
       res.status(406).json({
