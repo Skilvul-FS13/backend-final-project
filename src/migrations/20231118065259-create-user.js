@@ -24,6 +24,9 @@ module.exports = {
       image: {
         type: Sequelize.STRING,
       },
+      points: {
+        type: Sequelize.INTEGER,
+      },
       gender: {
         type: Sequelize.ENUM,
         values: ['laki-laki', 'perempuan'],
