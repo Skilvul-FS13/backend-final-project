@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       image: DataTypes.STRING,
+      points: DataTypes.INTEGER,
       gender: {
         type: DataTypes.ENUM,
         values: ['laki-laki', 'perempuan'],
