@@ -77,9 +77,14 @@ const addPost = async (req, res) => {
     };
     const addNewPost = await Post.create(newPost);
 
+    const updatedUserPoints = user.points + 10;
+
+    await User.update({ points: updatedUserPoints }, { where: { id: data.userId } });
+
     res.status(201).json({
-      message: 'Post has been added succesfully',
+      message: 'Post and points has been added succesfully',
       data: addNewPost,
+      poin_updated: updatedUserPoints,
     });
   } catch (error) {
     res.send(error.message);
