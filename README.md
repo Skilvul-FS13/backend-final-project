@@ -181,8 +181,8 @@ GET /likes
 | Method   | Endpoint     | Description                                 |
 | :------- | :----------- | :------------------------------------------ |
 | `GET`    | `/likes`     | Get all likes                               |
-| `POST`   | `/likes`     | `require authentication` Create new comment |
-| `DELETE` | `/likes/:id` | `require authentication` Delete comment     |
+| `POST`   | `/likes`     | `require authentication` Create new like    |
+| `DELETE` | `/likes/:id` | `require authentication` Delete like        |
 
 #### Get news
 
