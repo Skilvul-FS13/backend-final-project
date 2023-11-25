@@ -12,6 +12,10 @@ const getAllPost = async (req, res) => {
           model: Comments,
           require: true,
         },
+        {
+          model: User,
+          require: true,
+        },
       ],
     });
     res.status(200).json({
