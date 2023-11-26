@@ -43,6 +43,10 @@ const getPostById = async (req, res) => {
           model: Comments,
           require: true,
         },
+        {
+          model: User,
+          require: true,
+        },
       ],
     });
 
