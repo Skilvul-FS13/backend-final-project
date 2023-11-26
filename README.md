@@ -4,8 +4,8 @@
   - [Features](#features)
   - [API Installation](#api-installation)
   - [API Reference](#api-reference)
-    - [Authorization](#authorization)
     - [Endpoint](#endpoint)
+    - [Authorization](#authorization)
     - [Get users](#get-users)
     - [Get posts](#get-posts)
     - [Get comments](#get-comments)
@@ -113,6 +113,7 @@ or if running locally
 
 http://localhost:3000
 ```
+
 #### Authorization
 
 To authenticate an API request, you should provide your token key in the `Authorization` header.
@@ -162,13 +163,14 @@ GET /post
 GET /comments
 ```
 
-| Method   | Endpoint        | Description                                 |
-| :------- | :-------------- | :------------------------------------------ |
-| `GET`    | `/comments`     | Get all comments                            |
-| `GET`    | `/comments/:id` | Get comment by id                           |
-| `POST`   | `/comments`     | `require authentication` Create new comment |
-| `PUT`    | `/comments/:id` | `require authentication` Edit comment       |
-| `DELETE` | `/comments/:id` | `require authentication` Delete comment     |
+| Method   | Endpoint             | Description                                 |
+| :------- | :------------------- | :------------------------------------------ |
+| `GET`    | `/comments`          | Get all comments                            |
+| `GET`    | `/comments/:id`      | Get comment by id                           |
+| `GET`    | `/comments/:id/post` | Get comment by **post** id                  |
+| `POST`   | `/comments`          | `require authentication` Create new comment |
+| `PUT`    | `/comments/:id`      | `require authentication` Edit comment       |
+| `DELETE` | `/comments/:id`      | `require authentication` Delete comment     |
 
 #### Get likes
 
@@ -178,11 +180,11 @@ GET /comments
 GET /likes
 ```
 
-| Method   | Endpoint     | Description                                 |
-| :------- | :----------- | :------------------------------------------ |
-| `GET`    | `/likes`     | Get all likes                               |
-| `POST`   | `/likes`     | `require authentication` Create new like    |
-| `DELETE` | `/likes/:id` | `require authentication` Delete like        |
+| Method   | Endpoint     | Description                              |
+| :------- | :----------- | :--------------------------------------- |
+| `GET`    | `/likes`     | Get all likes                            |
+| `POST`   | `/likes`     | `require authentication` Create new like |
+| `DELETE` | `/likes/:id` | `require authentication` Delete like     |
 
 #### Get news
 
