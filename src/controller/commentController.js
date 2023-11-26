@@ -1,8 +1,13 @@
-const { Post, Comments } = require('../models');
+const { Post, Comments, User } = require('../models');
 
 const getAllComments = async (req, res) => {
   try {
-    const allComments = await Comments.findAll();
+    const allComments = await Comments.findAll({
+      include: {
+        model: User,
+        require: true,
+      },
+    });
     res.status(200).json({
       message: 'succeed',
       data: allComments,
@@ -18,6 +23,34 @@ const getCommentById = async (req, res) => {
   try {
     const id = req.params.id;
     const getComment = await Comments.findOne({ where: { id: id } });
+
+    if (!getComment) {
+      res.status(404).json({
+        message: 'comment not found',
+      });
+    }
+
+    res.status(200).json({
+      message: 'succeed',
+      data: getComment,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+const getCommentByPostId = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const getComment = await Comments.findAll({
+      where: { postId: id },
+      include: {
+        model: User,
+        require: true,
+      },
+    });
 
     if (!getComment) {
       res.status(404).json({
@@ -108,4 +141,4 @@ const editComment = async (req, res) => {
   }
 };
 
-module.exports = { getAllComments, getCommentById, addComment, deleteComment, editComment };
+module.exports = { getAllComments, getCommentById, getCommentByPostId, addComment, deleteComment, editComment };
