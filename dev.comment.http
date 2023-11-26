@@ -3,7 +3,13 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3000/comments/3
+GET http://localhost:3000/comments/15
+Content-Type: application/json
+
+
+###
+
+GET http://localhost:3000/comments/5/posts
 Content-Type: application/json
 
 ###
