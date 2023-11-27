@@ -45,7 +45,7 @@ const getUserById = async (req, res) => {
 
 const getPostById = async (req, res) => {
   const id = req.params.id;
-  const getPost = await Post.findOne({
+  const getPost = await Post.findAll({
     where: { userId: id },
   });
 

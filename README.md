@@ -130,14 +130,14 @@ POST {baseUrl}/users/login
 GET /users
 ```
 
-| Method | Endpoint          | Description                        |
-| :----- | :---------------- | :--------------------------------- |
-| `GET`  | `/users`          | Get all users                      |
-| `GET`  | `/users/:id`      | Get user by id                     |
-| `GET`  | `/users/:id/post` | Get post by user id                |
-| `POST` | `/users/login`    | Get user token                     |
-| `POST` | `/users`          | Create new user                    |
-| `PUT`  | `/users/:id`      | `require authentication` Edit user |
+| Method | Endpoint           | Description                        |
+| :----- | :----------------- | :--------------------------------- |
+| `GET`  | `/users`           | Get all users                      |
+| `GET`  | `/users/:id`       | Get user by id                     |
+| `GET`  | `/users/:id/posts` | Get post by user id                |
+| `POST` | `/users/login`     | Get user token                     |
+| `POST` | `/users`           | Create new user                    |
+| `PUT`  | `/users/:id`       | `require authentication` Edit user |
 
 #### Get posts
 
