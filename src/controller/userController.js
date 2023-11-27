@@ -76,7 +76,7 @@ const login = async (req, res) => {
       .compare(data.password, getUser.password)
       .then((result) => {
         if (result) {
-          const token = jwt.sign({ id: getUser.id, firstName: getUser.firstName, lastName: getUser.lastName, role: getUser.role, iat: Math.floor(Date.now() / 3000 - 30) }, process.env.JWT_SECRET);
+          const token = jwt.sign({ id: getUser.id, firstName: getUser.firstName, lastName: getUser.lastName, image: getUser.image, role: getUser.role, iat: Math.floor(Date.now() / 3000 - 30) }, process.env.JWT_SECRET);
           res.status(200).json({
             status: true,
             message: 'Login Succesful',
