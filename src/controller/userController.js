@@ -47,6 +47,20 @@ const getPostById = async (req, res) => {
   const id = req.params.id;
   const getPost = await Post.findAll({
     where: { userId: id },
+    include: [
+      {
+        model: Likes,
+        require: true,
+      },
+      {
+        model: Comments,
+        require: true,
+      },
+      {
+        model: User,
+        require: true,
+      },
+    ],
   });
 
   if (!getPost) {
