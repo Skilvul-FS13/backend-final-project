@@ -5,7 +5,6 @@ const midtransClient = require('midtrans-client');
 
 const donationGetaway = async (req, res) => {
   const data = req.body;
-  const userId = req.params.id;
 
   let snap = new midtransClient.Snap({
     isProduction: false,
@@ -14,7 +13,7 @@ const donationGetaway = async (req, res) => {
   });
 
   let parameter = {
-    transaction_detail: {
+    transaction_details: {
       order_id: 'order-id-node-' + Math.round(new Date().getTime() / 1000),
       gross_amount: data.donation_amount,
     },
@@ -28,6 +27,14 @@ const donationGetaway = async (req, res) => {
       phone: data.phone,
     },
   };
+
+  snap.createTransaction(parameter).then((transaction) => {
+    let transactionToken = transaction.token;
+    res.status(201).json({
+      data: transactionToken,
+    });
+    console.log('Token: ', transactionToken);
+  });
 };
 
 module.exports = { donationGetaway };
