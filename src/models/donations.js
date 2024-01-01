@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       donation_amount: DataTypes.INTEGER,
       email: DataTypes.STRING,
       phone: DataTypes.STRING,
+      transaction_status: DataTypes.STRING,
     },
     {
       sequelize,
