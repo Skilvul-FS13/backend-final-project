@@ -91,7 +91,7 @@ const login = async (req, res) => {
       .then((result) => {
         if (result) {
           const token = jwt.sign(
-            { id: getUser.id, firstName: getUser.firstName, lastName: getUser.lastName, image: getUser.image, role: getUser.role, points: getUser.points, iat: Math.floor(Date.now() / 3000 - 30) },
+            { id: getUser.id, firstName: getUser.firstName, lastName: getUser.lastName, email: getUser.email, image: getUser.image, role: getUser.role, points: getUser.points, iat: Math.floor(Date.now() / 3000 - 30) },
             process.env.JWT_SECRET
           );
           res.status(200).json({
