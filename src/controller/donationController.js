@@ -1,6 +1,5 @@
 require('dotenv/config');
 
-const { User, Donations } = require('../models');
 const midtransClient = require('midtrans-client');
 
 const donationGetaway = async (req, res) => {
