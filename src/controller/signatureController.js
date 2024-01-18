@@ -50,7 +50,7 @@ const addSignature = async (req, res) => {
 const getSignatureById = async (req, res) => {
   try {
     const id = req.params.id;
-    const getSignature = await Signatures.findOne({
+    const getSignature = await Signatures.findAll({
       where: { id: id },
       include: [
         { model: Petitions, required: true },
