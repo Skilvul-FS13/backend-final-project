@@ -59,6 +59,7 @@ const getSignatureById = async (req, res) => {
       res.status(404).json({
         message: 'Signature not found',
       });
+      return;
     }
 
     res.status(200).json({
