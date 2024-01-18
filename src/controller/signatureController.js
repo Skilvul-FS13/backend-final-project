@@ -51,7 +51,7 @@ const getSignatureById = async (req, res) => {
   try {
     const id = req.params.id;
     const getSignature = await Signatures.findAll({
-      where: { id: id },
+      where: { petitionId: id },
       include: [
         { model: Petitions, required: true },
         { model: User, required: true },
