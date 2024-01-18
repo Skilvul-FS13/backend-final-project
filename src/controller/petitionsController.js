@@ -31,6 +31,10 @@ const getPetitionById = async (req, res) => {
           model: Signatures,
           require: true,
         },
+        {
+          model: User,
+          require: true,
+        },
       ],
     });
 
