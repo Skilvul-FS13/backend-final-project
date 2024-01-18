@@ -2,7 +2,14 @@ const { Signatures, Petitions, User } = require('../models');
 
 const getAllSignature = async (req, res) => {
   try {
-    const allSignatures = await Signatures.findAll();
+    const allSignatures = await Signatures.findAll({
+      include: [
+        {
+          model: User,
+          require: true,
+        },
+      ],
+    });
     res.status(200).json({
       message: 'succeed',
       data: allSignatures,
